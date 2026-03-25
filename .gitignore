@@ -1,0 +1,27 @@
+# OS and IDE files
+.DS_Store
+.vscode/
+*.swp
+*.swo
+*~
+.idea/
+
+# Dependencies (if you add any)
+node_modules/
+
+# Build outputs (if you add a build process later)
+dist/
+build/
+*.min.js
+*.min.css
+
+# Local environment files
+.env
+.env.local
+
+# Logs
+*.log
+npm-debug.log*
+
+# Thumbnails
+Thumbs.db
