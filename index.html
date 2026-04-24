@@ -55,10 +55,9 @@
         "email": "Drew@highnoonpoolcare.com",
         "address": {
           "@type": "PostalAddress",
-          "streetAddress": "[Your Business Street Address]",
           "addressLocality": "Corinth",
           "addressRegion": "TX",
-          "postalCode": "[Your ZIP Code]",
+          "postalCode": "76208",
           "addressCountry": "US"
         },
         "url": "https://highnoonpoolcare.com/",
@@ -424,7 +423,20 @@
                   target="_blank"
                   rel="noopener noreferrer"
                   class="social-link"
-                  >Facebook</a
+                  aria-label="Follow High Noon Pool Care on Facebook"
+                  ><svg
+                    xmlns="http://www.w3.org/2000/svg"
+                    width="18"
+                    height="18"
+                    viewBox="0 0 24 24"
+                    fill="currentColor"
+                    aria-hidden="true"
+                  >
+                    <path
+                      d="M13.5 8H16V5h-2.5C10.46 5 9 6.79 9 9.67V12H6v3h3v7h3v-7h3.03l.47-3H12V9.92C12 9.05 12.29 8 13.5 8Z"
+                    />
+                  </svg>
+                  <span>Facebook</span></a
                 >
               </p>
             </div>
@@ -433,29 +445,67 @@
           <!-- Contact Form -->
           <div class="contact-form-section">
             <h3>Quick Quote Request</h3>
-            <form
-              class="contact-form"
-              action="https://formspree.io/f/YOUR_FORM_ID"
-              method="POST"
-            >
+
+            <div data-fs-success class="form-success">
+              Thanks! We received your request and will be in touch soon.
+            </div>
+            <div data-fs-error class="form-error"></div>
+
+            <form id="contact-form" class="contact-form">
+              <!-- Honeypot: hidden from real users, bots fill it in; Formspree discards those submissions -->
+              <div class="honeypot-field" aria-hidden="true">
+                <label for="_gotcha">Leave this blank</label>
+                <input
+                  type="text"
+                  id="_gotcha"
+                  name="_gotcha"
+                  tabindex="-1"
+                  autocomplete="off"
+                />
+              </div>
+
               <div class="form-group">
                 <label for="name">Your Name</label>
-                <input type="text" id="name" name="name" required />
+                <input
+                  type="text"
+                  id="name"
+                  name="name"
+                  data-fs-field
+                  required
+                />
+                <span data-fs-error="name" class="field-error"></span>
               </div>
 
               <div class="form-group">
                 <label for="email">Your Email</label>
-                <input type="email" id="email" name="email" required />
+                <input
+                  type="email"
+                  id="email"
+                  name="email"
+                  data-fs-field
+                  required
+                />
+                <span data-fs-error="email" class="field-error"></span>
               </div>
 
               <div class="form-group">
                 <label for="phone">Your Phone</label>
-                <input type="tel" id="phone" name="phone" required />
+                <input
+                  type="tel"
+                  id="phone"
+                  name="phone"
+                  data-fs-field
+                  pattern="[0-9\-\+\s\(\)]{7,15}"
+                  placeholder="e.g. 940-555-0100"
+                  title="Please enter a valid phone number"
+                  required
+                />
+                <span data-fs-error="phone" class="field-error"></span>
               </div>
 
               <div class="form-group">
                 <label for="service">Service Needed</label>
-                <select id="service" name="service" required>
+                <select id="service" name="service" data-fs-field required>
                   <option value="">- Select a service -</option>
                   <option value="weekly-service">Weekly Pool Service</option>
                   <option value="pool-cleaning">Pool Cleaning</option>
@@ -465,6 +515,7 @@
                   <option value="one-time-visit">One-Time Service Visit</option>
                   <option value="other">Other / Not Sure</option>
                 </select>
+                <span data-fs-error="service" class="field-error"></span>
               </div>
 
               <div class="form-group">
@@ -473,26 +524,16 @@
                   id="message"
                   name="message"
                   rows="4"
+                  data-fs-field
                   placeholder="Describe your pool or service needs..."
                 ></textarea>
+                <span data-fs-error="message" class="field-error"></span>
               </div>
 
-              <button type="submit" class="btn btn-primary">
+              <button type="submit" class="btn btn-primary" data-fs-submit-btn>
                 Send Quote Request
               </button>
             </form>
-
-            <p class="form-note">
-              <strong>Note:</strong> This form requires setup.
-              <a
-                href="https://formspree.io/"
-                target="_blank"
-                rel="noopener noreferrer"
-                >Use Formspree</a
-              >
-              (free tier available) to enable form submissions. See README.md
-              for setup instructions.
-            </p>
           </div>
         </div>
       </div>
@@ -534,7 +575,21 @@
               href="https://www.facebook.com/highnoonpoolcare"
               target="_blank"
               rel="noopener noreferrer"
-              >Facebook</a
+              class="social-link"
+              aria-label="Follow High Noon Pool Care on Facebook"
+              ><svg
+                xmlns="http://www.w3.org/2000/svg"
+                width="18"
+                height="18"
+                viewBox="0 0 24 24"
+                fill="currentColor"
+                aria-hidden="true"
+              >
+                <path
+                  d="M13.5 8H16V5h-2.5C10.46 5 9 6.79 9 9.67V12H6v3h3v7h3v-7h3.03l.47-3H12V9.92C12 9.05 12.29 8 13.5 8Z"
+                />
+              </svg>
+              <span>Facebook</span></a
             >
           </p>
         </div>
@@ -543,5 +598,19 @@
 
     <!-- JavaScript -->
     <script src="script.js"></script>
+
+    <!-- Formspree AJAX -->
+    <script>
+      window.formspree =
+        window.formspree ||
+        function () {
+          (formspree.q = formspree.q || []).push(arguments);
+        };
+      formspree("initForm", {
+        formElement: "#contact-form",
+        formId: "xlgozjzz",
+      });
+    </script>
+    <script src="https://unpkg.com/@formspree/ajax@1" defer></script>
   </body>
 </html>
